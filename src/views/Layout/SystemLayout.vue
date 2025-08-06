@@ -1,33 +1,43 @@
 <script lang="ts" setup>
-import AsideMenuNav from './AsideMenuNav.vue'
-import HeaderMenuNav from './HeaderMenuNav.vue'
+import LayoutAsideMenu from './LayoutAsideMenu.vue'
+import LayoutHeaderMenu from './LayoutHeaderMenu.vue'
 </script>
 
 <template>
-  <div class="system">
-    <HeaderMenuNav />
-    <div class="system-container">
-      <AsideMenuNav />
-      <div class="system-container__content">
+  <el-container>
+    <el-header style="padding: 0;">
+      <LayoutHeaderMenu />
+    </el-header>
+
+    <el-container style="padding: 0;">
+      <el-aside
+        width="220px"
+      >
+        <!-- <LayoutAsideMenu /> -->
+        <router-link to="/micro-app">Child Home</router-link>
+      </el-aside>
+
+      <el-main>
         <!-- 主应用路由视图 -->
-        <!-- <router-view/> -->
+        <router-view />
 
         <!-- 微应用容器 -->
-        <div id="subapp-viewport"></div>
-      </div>
-    </div>
-  </div>
+        <div id="micro-app"></div>
+      </el-main>
+
+    </el-container>
+  </el-container>
 </template>
 
 <style lang="scss" scoped>
-.system {
-  &-container {
-    display: flex;
+// .system {
+//   &-container {
+//     display: flex;
 
-    &__content {
-      flex: 1;
-      overflow: hidden;
-    }
-  }
-}
+//     &__content {
+//       flex: 1;
+//       overflow: hidden;
+//     }
+//   }
+// }
 </style>

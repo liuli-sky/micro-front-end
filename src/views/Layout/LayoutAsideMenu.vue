@@ -23,8 +23,10 @@ const handleChangeCollapse = () => {
   // isCollapse.value = !isCollapse.value
 }
 
+// 点击菜单，进行子路由跳转
 const handleChangeMenu = (path: string) => {
   activePath.value = path
+  console.log(path)
   router.push(path)
 }
 
@@ -67,7 +69,7 @@ const menuList = router.options.routes[0]
 
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 250px;
-  min-height: 100vh;
+  width: 220px;
+  min-height: calc(100vh - 60px);
 }
 </style>

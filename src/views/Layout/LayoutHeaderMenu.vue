@@ -24,12 +24,6 @@ const logout = async () => {
  */
 const handleEditPassword = () => {}
 
-/**
- * 进入大屏
- */
-const handleGoToBigScreen = () => {
-  router.push('/analysis-chart')
-}
 </script>
 
 <template>
@@ -49,9 +43,6 @@ const handleGoToBigScreen = () => {
             <el-dropdown-item @click="handleEditPassword"
               >修改密码</el-dropdown-item
             >
-            <el-dropdown-item @click="handleGoToBigScreen"
-              >进入大屏</el-dropdown-item
-            >
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -61,14 +52,13 @@ const handleGoToBigScreen = () => {
 
 <style lang="scss" scoped>
 .header-bar {
-  height: 65px;
+  height: 60px;
   background: #edf3ff;
-  margin: 15px;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 30px;
   color: #222;
   font-size: 22px;
   font-weight: 800;

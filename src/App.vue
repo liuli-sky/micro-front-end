@@ -8,15 +8,8 @@
 <style>
 :root,
 #app {
-  width: 100vw;
+  /* width: 100vw; */
   min-width: 1200px;
-  height: 100vh;
-  overscroll-behavior: none;
-  scroll-behavior: smooth;
-}
-
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  /* height: 100vh; */
 }
 </style>

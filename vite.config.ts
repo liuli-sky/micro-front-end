@@ -17,7 +17,7 @@ const config = loadEnv('development', './')
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    Vue(),
+    Vue(), // 启用Vue内置API
     Components({ // 自动注册组件
       resolvers: [ElementPlusResolver(), IconsResolver()]
     }),
