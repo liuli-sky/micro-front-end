@@ -7,8 +7,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import styleImport, { ElementPlusResolve } from 'vite-plugin-style-import'
-``
-// import qiankun from 'vite-plugin-qiankun'
+import qiankun from 'vite-plugin-qiankun'
 
 import path from 'path'
 const resolve = (dir: string) => path.join(__dirname, dir)
@@ -33,11 +32,11 @@ export default defineConfig({
     styleImport({ // 按需引入element-plus组件样式
       resolves: [ElementPlusResolve()]
     }),
-    // qiankun('micro-app', { // 必须与主应用注册的name一致
-    //   useDevMode: true
-    // })
+    qiankun('micro-app', { // 必须与主应用注册的name一致
+      useDevMode: true
+    })
   ],
-  base: '/micro-app/', // 必须与主应用activeRule一致
+  base: process.env.NODE_ENV === 'production' ? '/micro-app/' : '/', // 必须与主应用activeRule一致
   resolve: { // 配置别名，简化路径引用
     alias: {
       '@': resolve('/src')
