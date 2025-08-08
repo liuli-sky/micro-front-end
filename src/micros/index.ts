@@ -16,12 +16,14 @@ import apps from "./app";
  */
 registerMicroApps(apps, {
   beforeLoad: (app) => {
+    console.log("before load", app.name);
     // 加载微应用前，加载进度条
     NProgress.start();
     return Promise.resolve();
   },
   afterMount: (app) => {
     // 加载微应用前，进度条加载完成
+    console.log("after mount", app.name);
     NProgress.done();
     return Promise.resolve();
   },
@@ -34,7 +36,7 @@ registerMicroApps(apps, {
 addGlobalUncaughtErrorHandler((event) => {
   const { message } = event
   if (message && message.includes("died in status LOADING_SOURCE_CODE")) {
-    console.error("微应用加载失败，请检查应用是否可运行");
+    console.error("this:::::::微应用加载失败，请检查应用是否可运行");
   }
 });
 

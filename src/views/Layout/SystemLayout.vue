@@ -10,9 +10,7 @@ import LayoutHeaderMenu from './LayoutHeaderMenu.vue'
     </el-header>
 
     <el-container style="padding: 0;">
-      <el-aside
-        width="220px"
-      >
+      <el-aside width="220px">
         <!-- <LayoutAsideMenu /> -->
         <router-link to="/micro-app">Child Home</router-link>
       </el-aside>
@@ -22,22 +20,10 @@ import LayoutHeaderMenu from './LayoutHeaderMenu.vue'
         <router-view />
 
         <!-- 微应用容器 -->
-        <div id="micro-app"></div>
+        <!-- <div id="container"></div> -->
+        <div id="container" v-show="$route.path.startsWith('/micro-app')"></div>
       </el-main>
 
     </el-container>
   </el-container>
 </template>
-
-<style lang="scss" scoped>
-// .system {
-//   &-container {
-//     display: flex;
-
-//     &__content {
-//       flex: 1;
-//       overflow: hidden;
-//     }
-//   }
-// }
-</style>
