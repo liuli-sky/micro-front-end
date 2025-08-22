@@ -1,6 +1,6 @@
 
 <template>
-<el-config-provider size="default">
+  <el-config-provider size="default">
     <router-view />
   </el-config-provider>
 </template>

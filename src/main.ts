@@ -14,13 +14,13 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
+// 挂载应用
+app.mount('#app')
 
-// 挂载全局属性
-app.use(router).mount('#app')
-
-
-// 启动微应用
-start({
-  prefetch: true, // 预加载
-  sandbox: { experimentalStyleIsolation: true } // 启用样式隔离
+// 等待路由就绪后再启动 qiankun，确保布局与容器已渲染
+router.isReady().then(() => {
+  start({
+    prefetch: true, // 预加载
+    sandbox: { experimentalStyleIsolation: true } // 启用样式隔离
+  })
 })

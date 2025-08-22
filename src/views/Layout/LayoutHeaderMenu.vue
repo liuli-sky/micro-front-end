@@ -52,7 +52,7 @@ const handleEditPassword = () => {}
 
 <style lang="scss" scoped>
 .header-bar {
-  height: 60px;
+  height: 50px;
   background: #edf3ff;
   border-radius: 5px;
   display: flex;

@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import LayoutAsideMenu from './LayoutAsideMenu.vue'
 import LayoutHeaderMenu from './LayoutHeaderMenu.vue'
+import LayoutHeaderTab from './LayoutHeaderTab.vue'
+
+const handleDispatchTab = (tab: object) => {
+  console.log(tab);
+}
+
 </script>
 
 <template>
@@ -9,19 +15,19 @@ import LayoutHeaderMenu from './LayoutHeaderMenu.vue'
       <LayoutHeaderMenu />
     </el-header>
 
-    <el-container style="padding: 0;">
-      <el-aside width="220px">
-        <!-- <LayoutAsideMenu /> -->
-        <router-link to="/micro-app">Child Home</router-link>
+    <el-container>
+      <el-aside width="80px">
+        <!-- 左侧菜单栏 -->
+        <LayoutAsideMenu @dispatch-tab="handleDispatchTab" />
       </el-aside>
 
-      <el-main>
+      <el-main style="padding: 0;">
         <!-- 主应用路由视图 -->
+        <LayoutHeaderTab />
         <router-view />
 
         <!-- 微应用容器 -->
-        <!-- <div id="container"></div> -->
-        <div id="container" v-show="$route.path.startsWith('/micro-app')"></div>
+        <!-- <div id="subapp-container"></div> -->
       </el-main>
 
     </el-container>

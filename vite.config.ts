@@ -44,11 +44,6 @@ export default defineConfig({
     proxy: { // 设置API代理，解决跨域问题
       '/api': {
         target: config.VITE_API_BASE_URL
-      },
-      '/sub-vue3/': { // 测试代理
-        target: 'http://localhost:7101',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/sub-vue3/, '')
       }
     },
     hmr: true, // 热更新

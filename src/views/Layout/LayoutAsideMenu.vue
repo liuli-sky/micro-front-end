@@ -1,75 +1,50 @@
 <script lang="ts" setup>
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-  Share
-} from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { Menu as ElIconMenu, Setting, User, Grid, Aim, Histogram } from '@element-plus/icons-vue'
+
+const iconMap = { menu: ElIconMenu, setting: Setting, user: User, grid: Grid, histogram: Histogram, aim: Aim }
 
 const router = useRouter()
+const route = useRoute()
+const activePath = ref(route.path)
 
-const isCollapse = ref(false)
-const handleOpen = (key: string, keyPath: string[]) => {
-  // console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  // console.log(key, keyPath)
-}
-
-// 更改折叠方式
-const handleChangeCollapse = () => {
-  // isCollapse.value = !isCollapse.value
+const handleChangeMenu = (info: { path: String }) => {
+  activePath.value = info.path
+  router.push(info.path)
+  emit('dispatch-tab', { title: info.meta.title, name: info.path })
 }
 
-// 点击菜单，进行子路由跳转
-const handleChangeMenu = (path: string) => {
-  activePath.value = path
-  console.log(path)
-  router.push(path)
-}
+const menuList = router.options.routes[0] // 直接使用而不需要computed
 
-onMounted(() => {
-  activePath.value =
-    (router.currentRoute.value.meta?.lockMenu as string) ||
-    router.currentRoute.value.path
-})
-
-const activePath = ref('/user-info') // 当前激活的菜单
-
-// menu list
-const menuList = router.options.routes[0]
+const emit = defineEmits<{
+  (event: 'dispatch-tab', info: object): void
+}>()
 </script>
 
 <template>
-  <el-menu
-    default-active="2"
-    class="el-menu-vertical-demo"
-    :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
-    @click="handleChangeCollapse"
-  >
-    <el-sub-menu
-      v-for="(item, index) in menuList.children"
-      :key="item.path"
-      :index="index"
-      @click="handleChangeMenu(item.path)"
-    >
-      <template #title>
-        <el-icon color="#409EFC" class="no-inherit">
-          <Setting />
-        </el-icon>
-        <span>{{ item.meta?.title }}</span>
-      </template>
-    </el-sub-menu>
+  <el-menu :default-active="activePath" class="el-menu-vertical-demo" :collapse="true">
+    <div v-for="item in menuList.children" :key="item.path">
+      <el-sub-menu v-if="item.children?.length" :index="item.path">
+        <template #title>
+          <component :is="iconMap[item.meta?.icon] || ElIconMenu" class="menu-icon" size="16px" />
+        </template>
+        <el-menu-item v-for="child in item.children" :key="child.path" :index="child.path" @click="handleChangeMenu(child)">
+          {{ child.meta?.title }}
+        </el-menu-item>
+      </el-sub-menu>
+
+      <el-menu-item v-else :index="item.path" @click="handleChangeMenu(item)">
+        <component :is="iconMap[item.meta?.icon] || ElIconMenu" class="menu-icon" size="16px" />
+        <template #title>{{ item.meta?.title }}</template>
+      </el-menu-item>
+    </div>
   </el-menu>
 </template>
 
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 220px;
-  min-height: calc(100vh - 60px);
+  width: 120px;
+  height: calc(100vh - 90px);
 }
 </style>
