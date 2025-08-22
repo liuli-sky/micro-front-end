@@ -33,7 +33,7 @@ export default defineConfig({
       resolves: [ElementPlusResolve()]
     }),
     qiankun('micro-app', { // 必须与主应用注册的name一致
-      useDevMode: true
+      useDevMode: true // 开发模式下，开启沙箱模式
     })
   ],
   base: process.env.NODE_ENV === 'production' ? '/micro-app/' : '/', // 必须与主应用activeRule一致

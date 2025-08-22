@@ -19,6 +19,7 @@
     "unplugin-auto-import": "^0.5.5",
     "unplugin-icons": "^0.13.4",
     "unplugin-vue-components": "^0.17.11",
+    "vite-plugin-qiankun": "^1.0.15",
     "vite-plugin-style-import": "^1.4.1",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
